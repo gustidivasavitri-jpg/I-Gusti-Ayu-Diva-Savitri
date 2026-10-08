@@ -1,0 +1,68 @@
+TELISIK STUDIO — Paket Streamlit versi 2
+
+CARA MEMASANG (tanpa melatih ulang dan tanpa menyalin kode panjang)
+1. Unduh TELISIK_Studio_v2.zip, klik kanan > Extract All / Ekstrak semua.
+2. Buka repository gustidivasavitri-jpg/I-Gusti-Ayu-Diva-Savitri.
+3. Add file > Upload files. Seret ISI folder hasil ekstrak, termasuk folder assets.
+   Jangan mengunggah ZIP atau folder pembungkus TELISIK_Studio_v2 sebagai satu folder.
+4. Pastikan app.py, core.py, missions.py, kasus.json, requirements.txt,
+   metrik.json, model_telisik.joblib berada di akar repository.
+   Ilustrasi tetap berada dalam folder assets/*.svg.
+5. Klik Commit changes. Streamlit akan memasang dependensi dan menjalankan ulang aplikasi.
+6. Gunakan Python 3.12. Main file path: app.py. Tidak perlu API key atau secrets.
+7. File bank_kasus_telisik.csv lama boleh tetap ada; versi ini memakai kasus.json.
+
+HALAMAN
+- Beranda: identitas visual, ilustrasi asli, kartu kasus, jalan pintas.
+- Radar Informasi: RSS resmi ANTARA (Teknologi, Ekonomi, Lingkungan, Terkini).
+  Diambil saat halaman dipakai; cache 15 menit. Tombol pembaruan tersedia.
+  Memperlihatkan tanggal terbit dan waktu pengambilan. Tidak mengklaim berita
+  sebagai hasil cek fakta. Jika koneksi gagal, pesan jelas dan tautan sumber
+  ditampilkan; salinan sesi terakhir hanya ditampilkan bila tersedia.
+- Jelajah Kasus: enam arsip pemeriksaan, filter topik, pencarian kata, simpan kasus,
+  penilaian awal + keyakinan pribadi, bukti sumber, refleksi sesudah membaca.
+- Lab AI: prediksi model SVM lama, perbandingan penilaian pengguna, grafik kontribusi
+  frasa TF-IDF x bobot SVM, rujukan terkait, transparansi evaluasi.
+- Misi Literasi: delapan ilustrasi skenario, jawaban pertama dicatat, boleh mengulang.
+- Progres: catatan aktivitas dalam sesi dan unduhan JSON. Bukan ukuran literasi tervalidasi.
+
+PENGUJIAN
+Lulus pemeriksaan sintaks dan Streamlit AppTest pada Python 3.12 / Streamlit 1.50.0:
+semua halaman; navigasi kartu; penilaian awal; refleksi; misi; prediksi SVM;
+kontribusi fitur; pencarian kasus; filter topik; penolakan URL RSS tidak sesuai.
+RSS ANTARA berhasil diambil dalam uji jaringan. Ketersediaan sumber dapat berubah.
+Tata letak mempunyai breakpoint layar kecil. Tangkapan layar browser desktop/mobile
+belum diverifikasi di lingkungan pengembangan ini karena unduhan browser tidak tersedia.
+Lakukan pemeriksaan akhir pada perangkat pengguna setelah unggah.
+
+SUMBER & BATASAN
+Enam ringkasan kasus memiliki URL, penerbit, tanggal publikasi, dan tanggal peninjauan
+pada kasus.json. Ringkasan ditulis ulang; tidak menyertakan artikel lengkap, gambar
+berhak cipta sumber, atau tautan formulir penipuan. Ilustrasi SVG dibuat untuk paket ini.
+Empat arsip pemeriksaan bertanggal 6 Oktober 2026; dua lainnya dari 2025 dan 2019.
+Semua contoh adalah klaim bermasalah: bank ini BUKAN dataset klasifikasi dua kelas.
+Misi adalah ilustrasi pendidikan, bukan berita nyata atau kuesioner tervalidasi.
+TELISIK tidak berafiliasi dengan penerbit sumber.
+
+Model berasal dari model_telisik.joblib pengguna, tidak dilatih ulang.
+Akurasi 73,15%; F1-macro 0,6863; 442 latih / 108 uji; 29 kesalahan uji.
+Dataset model: Rahutomo, Yanuar, Asmara (2018), CC BY 4.0:
+https://data.mendeley.com/datasets/p3hfgr5j3m/1
+Metrik satu split tidak membuktikan kinerja untuk informasi baru atau peningkatan literasi.
+Tidak ada persentase keyakinan AI. Grafik fitur menjelaskan perhitungan, bukan fakta.
+Batas 40 kata pada input adalah penyaring UX, bukan hasil validasi panjang teks.
+Kemiripan rujukan bukan bukti bahwa dua klaim sama. AI tidak menilai alasan pengguna.
+Tidak ada LLM/chatbot, pembelajaran model otomatis, atau penyimpanan permanen pengguna.
+
+RSS dan penggunaan:
+https://www.antaranews.com/rss
+Hanya judul, tanggal, dan tautan dibaca dari RSS, bukan isi artikel penuh.
+
+PENGEMBANGAN RISET BERIKUTNYA
+Untuk meningkatkan model: audit data artikel tambahan berlabel, deduplikasi dan
+kelompok kemiripan, evaluasi validasi kelompok untuk pemilihan model; jangan memakai
+108 artikel uji berulang-ulang untuk memilih model. Siapkan uji akhir baru yang tidak
+tersentuh bila keputusan model sudah dipengaruhi hasil uji sebelumnya.
+Untuk membuktikan manfaat belajar: uji kegunaan dan pre/post-test dengan kasus baru,
+izin partisipan dan instrumen penilaian yang ditinjau dosen. Jangan klaim 'juara'
+atau meningkatkan literasi hanya dari skor latihan delapan soal.
