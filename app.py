@@ -57,9 +57,23 @@ def news(channel): return fetch_feed(channel)
 
 def esc(s): return html.escape(str(s))
 def art(name):
-    path=BASE/'assets'/f'{name}.svg'
-    encoded=base64.b64encode(path.read_bytes()).decode()
-    st.markdown(f'<img class="art" alt="Ilustrasi editorial, bukan bukti kasus" src="data:image/svg+xml;base64,{encoded}">',unsafe_allow_html=True)
+    pilihan = [
+        BASE / "assets" / f"{name}.svg",
+        BASE / f"{name}.svg",
+    ]
+
+    path = next((p for p in pilihan if p.is_file()), None)
+
+    if path is None:
+        st.warning(f"Gambar {name}.svg belum ditemukan.")
+        return
+
+    encoded = base64.b64encode(path.read_bytes()).decode()
+    st.markdown(
+        f'<img class="art" alt="Ilustrasi editorial" '
+        f'src="data:image/svg+xml;base64,{encoded}">',
+        unsafe_allow_html=True
+    )
 def goto(page,case=None):
     st.session_state['_pending_nav']=page
     if case: st.session_state['selected_case']=case
