@@ -10,7 +10,7 @@ import streamlit as st
 from core import clean, search_cases, fetch_feed, FEEDS
 
 BASE=Path(__file__).resolve().parent
-st.set_page_config(page_title='TELISIK — Berani cek, bijak percaya.',page_icon='✳',layout='wide',initial_sidebar_state='collapsed')
+st.set_page_config(page_title='TELISIK — Berani cek, bijak percaya.',page_icon=str(BASE / "logo_telisik.png"),layout='wide',initial_sidebar_state='collapsed')
 st.markdown('''<style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 :root{--ink:#202139;--paper:#FAF8F4;--orange:#FF743D;--lilac:#C6B8FF}
@@ -361,4 +361,10 @@ elif page=='Progres':
             if k!='nav':del st.session_state[k]
         st.rerun()
 
-st.markdown('<div class="footer"><strong>✳ TELISIK / Berani cek. Bijak percaya.</strong><span>Prototipe pendidikan · Prediksi bukan vonis · Sumber tetap utama</span></div>',unsafe_allow_html=True)
+st.markdown(
+    '<div class="footer">'
+    '<strong>TELISIK / Berani cek. Bijak percaya.</strong>'
+    '<span>Prototipe pendidikan · Prediksi bukan vonis · Sumber tetap utama</span>'
+    '</div>',
+    unsafe_allow_html=True
+)
