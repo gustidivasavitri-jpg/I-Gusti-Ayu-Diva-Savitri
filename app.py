@@ -88,7 +88,12 @@ METRICS=json.loads((BASE/'metrik.json').read_text())
 for key,default in [('nav','Beranda'),('saved',[]),('journal',{}),('quiz_answers',{}),('case_steps',{}),('ai_history',[])]:
     if key not in st.session_state:st.session_state[key]=default
 
-st.markdown('<div class="brand"><b>✳</b> TELISIK <small>BERANI CEK.<br>BIJAK PERCAYA.</small></div>',unsafe_allow_html=True)
+logo_path = BASE / "logo_telisik.png"
+
+if logo_path.is_file():
+    st.image(str(logo_path), width=220)
+else:
+    st.markdown("### TELISIK")
 st.write('')
 if '_pending_nav' in st.session_state:
     st.session_state['nav']=st.session_state.pop('_pending_nav')
